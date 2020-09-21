@@ -1,0 +1,159 @@
+body {
+    font-family: Arial;
+    background: url('../images/cards-background.jpg') no-repeat;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+}
+
+.login-box {
+    padding: 4px;
+    color: #fff;
+}
+
+.login-box input {
+    border: none;
+}
+
+.input-group-text {
+    background-color: #a163f5;
+    border: none;
+}
+
+.input-group-text .fas {
+    color: #fff;
+}
+
+.center {
+    margin: auto;
+    display: block;
+    text-align: center;
+}
+
+.container {
+    padding: 15px;
+    background: rgba(0,0,0,0.6);
+}
+
+@media (min-width: 768px) {
+    .container-small {
+        width: 480px;
+    }
+    .container-large {
+        width: 970px;
+    } 
+} 
+@media (min-width: 992px) {
+    .container-small {
+        width: 550px;
+    }
+    .container-large {
+        width: 1170px;
+    } 
+} 
+@media (min-width: 1200px) {
+    .container-small {
+        width: 600px;
+    }
+    .container-large {
+        width: 1500px;
+    } 
+}
+
+.container-small, .container-large {
+    max-width: 100%;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.btn-login {
+    color: #fff;
+    background-color: #a163f5;
+    border-color: #a163f5;
+}
+
+.navbar {
+    width: 100vw;
+    height: 75px;
+    background: #272727;
+    color: #fff;
+    display: block;
+}
+
+.navbar .left {
+    float: left;
+    padding: 0px;
+    vertical-align: middle;
+    height: 100%;
+    padding: 8px 0px 0px 24px;
+}
+
+.navbar .right {
+    float: right;
+    height: 100%;
+    display: block;
+    padding: 25px 25px 0px 0px;
+}
+
+.navbar .right button {
+    padding: 0px;
+    background-color: rgba(0,0,0,0);
+    border: none;
+    border-radius: 0px;
+    color: #a86dee;
+    font-size: initial;
+    margin-left:6px;
+}
+
+#content {
+    min-width: 100%;
+}
+
+.table-node {
+    display: inline-block;
+    border: 1px solid black;
+    width: 35%;
+    padding: 20px;
+    background: radial-gradient(#292929 29%, #2d2d2d 90%);
+    color: #fff;
+    margin-top: 3px;
+    margin-right: 10px;
+    border: 1px solid #d6d6d6;
+    border-radius: 0px;
+    margin-top: 10px;
+    box-shadow: 0px 0px 6px 0px #b7b7b7;
+    flex: auto;
+}
+
+#table-node-holder {
+    display: flex;
+    padding: 0px 60px;
+}
+
+.table-node .right {
+    float: right;
+}
+
+.table-node a {
+    padding: 9px;
+    background-color: #9880e9;
+    border: 1px solid #9880e9;
+    border-radius: 5px;
+    color: #000;
+    font-size: initial;
+    cursor: pointer;
+}
+
+.table-node .table-info {
+    margin-top: 7px;
+}
+
+.table-borderless tr, .table-borderless td, table.table-borderless {
+    border: none;
+    color: #fff;
+    padding: 4px;
+}
+
+.no-background {
+    background: initial;
+}

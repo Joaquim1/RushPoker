@@ -1,0 +1,42 @@
+{
+  "name": "rushpkr",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Joaquim1/Poker"
+  },
+  "dependencies": {
+    "angular-animate": "^1.8.0",
+    "bcrypt": "^5.0.0",
+    "bootstrap": "^3.4.1",
+    "braintree": "^2.23.0",
+    "colors": "^1.4.0",
+    "connect": "~3.3.3",
+    "connect-mongo": "^3.2.0",
+    "cookie": "^0.4.1",
+    "cookie-signature": "^1.1.0",
+    "crypto": "^1.0.1",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.3",
+    "express": "~3.4.7",
+    "express-flash": "0.0.2",
+    "express-session": "^1.17.1",
+    "jade": "~1.7.0",
+    "less": "~2.0.0",
+    "less-middleware": "~1.0.4",
+    "method-override": "^3.0.0",
+    "moment": "^2.27.0",
+    "mongoose": "^5.9.25",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "socket.io": "~1.2.0",
+    "uuid": "^8.2.0"
+  },
+  "devDependencies": {
+    "jasmine": "^2.6.0"
+  }
+}

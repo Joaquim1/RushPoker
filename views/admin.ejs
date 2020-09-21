@@ -1,0 +1,103 @@
+<html>
+    <head>
+        <title><%= title %></title>
+    </head>
+    <body>
+        <a href="../">Home</a>
+        <h1>User lookup</h1>
+        <form action="/admin/user" method="POST">
+            Email or Username: <input type="text" name="email" /><br />
+            <input type="submit" value="Search Player">
+        </form>
+
+        <% if(typeof userFound !== 'undefined' && userFound) {%>
+            Email: <%= email %> <br />
+            Name: <%= name %> <br />
+            Balance: <%= balance %> <br />
+            Created On: <%= createdOn %><br />
+            IP Address: <%= ipAddress %><br />
+            Wins: <%= wins %><br />
+            Losses: <%= losses %><br />
+        <% } %>
+
+        <h1>Update Balance</h1> 
+        <form action="/admin/balance" method="post">
+            Email: <input type="text" name="email"><br />
+            New balance: <input type="text" name="balance"><br />
+            <input type="submit" value="Update balance">
+        </form>
+
+        <% if(typeof updateSuccess !== 'undefined' && updateSuccess) {%>
+            <%= name %>(<%= email %>): Balance updated to <%= newBalance %>
+        <% } else if (typeof updateSuccess !== 'undefined' && !updateSuccess) { %>
+            Error updating balance: <%= errorMessage %>
+        <% } %>
+
+        <h1>Disable User</h1> 
+        <form action="/admin/disable" method="post">
+            Email or Username: <input type="text" name="email"><br />
+            <input type="submit" value="Disable">
+        </form>
+
+        <% if(typeof disableSuccess !== 'undefined' && disableSuccess) {%>
+            <%= name %>(<%= email %>) has been disabled
+        <% } else if (typeof disableSuccess !== 'undefined' && !disableSuccess) { %>
+            Error disabling user: <%= errorMessage %>
+        <% } %>
+
+        <h1>Enable User</h1> 
+        <form action="/admin/enable" method="post">
+            Email or Username: <input type="text" name="email"><br />
+            <input type="submit" value="Enable">
+        </form>
+
+        <% if(typeof enableSuccess !== 'undefined' && enableSuccess) {%>
+            <%= name %>(<%= email %>) has been enabled
+        <% } else if (typeof enableSuccess !== 'undefined' && !enableSuccess) { %>
+            Error enabling user: <%= errorMessage %>
+        <% } %>
+
+        <h1>Register User</h1>
+
+        <form action="/admin/register" method="post">
+            Email: <input type="text" name="email" /> <br />
+            Name: <input type="text" name="name" /> <br />
+            Password: <input type="password" name="password" /> <br />
+            Balance: <input type="text" name="balance" /> <br />
+            Admin: <input type="checkbox" name="admin" /><br />
+            <input type="submit" value="Register User" />
+        </form>
+        <% if(typeof createUserSuccess !== 'undefined' && createUserSuccess) {%>
+            User created successfully
+        <% } else if (typeof createUserSuccess !== 'undefined' && !createUserSuccess) { %>
+            Error creating user: <%= errorMessage %>
+        <% } %>
+
+        <h1>Create table</h1>
+
+        <form action="/admin/table" method="post">
+            Name: <input type="text" name="name" /> <br />
+            Description: <input type="text" name="description" /> <br />
+            Small Blind: <input type="text" value="10" name="smallblind" /> <br />
+            Big Blind: <input type="text" value="20" name="bigblind" /> <br />
+            Minimum Buy In: <input type="text" value="100" name="minbuyin" /> <br />
+            Maximum Buy In: <input type="text" value="1000" name="maxbuyin" /> <br />
+            Minimum Players: <input type="text" value="2" name="minplayers" /> <br />
+            Maximum Players: <input type="text" value="10" name="maxplayers" /> <br />
+            Start Time: <input type="text" name="starttime" /> <br />
+            Minimum pot preflop for rake: <input type="text" value="0" name="rakeminprefloppot" /> <br />
+            Pre flop rake (dollar amount): <input type="text" value="0" name="rakeprefloppot" /> <br />
+            Post flop rake %: <input type="text" value="0" name="rakepostfloppercent" /> <br />
+            Max rake post flop: <input type="text" value="0" name="rakepostflopmax" /> <br />
+            Time bank: <input type="text" name="timebank" value="120" /> <br />
+            Raise Blinds (minutes): <input type="text" name="raiseblinds" value="0" /><br />
+            <input type="submit" value="Create Table" />
+        </form>
+        <% if(typeof createTableSuccess !== 'undefined' && createTableSuccess) {%>
+            Table created successfully
+        <% } else if (typeof createTableSuccess !== 'undefined' && !createTableSuccess) { %>
+            Error creating user: <%= errorMessage %>
+        <% } %>
+        
+    </body>
+</html>

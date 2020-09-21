@@ -1,0 +1,1372 @@
+@light-purple: #9880e9;
+@dark-purple: #160726;
+@purple: rgb(255, 255, 255);
+@transparent-purple: rgba(46,31,62,0.9);
+@lavender: #BE78E8;
+@felt-green: #387C41;
+@dark-greek: #17541D;
+@brown: #724F39;
+
+body {
+	margin: 0;
+	background: #ececec;
+	font-family: 'Roboto', sans-serif;
+	color: @light-purple;
+	font-size: 1em;
+}
+
+input[type="text"], input[type="number"] {
+	padding: 5px;
+    width: 228px;
+    border: 1px solid #2f2f2f;
+    border-radius: 5px;
+    color: #000000;
+    font-size: 1.4em;
+}
+
+#bet-input {
+	width: 64px;
+    font-size: 17px;
+    margin-top: 0px;
+}
+
+button, input[type="submit"], .button {	
+	padding: 6px 12px;
+    background-color: rgba(0, 0, 0, 0);
+    border: 1px solid #9880e9;
+    border-radius: 5px;
+    color: #9880e9;
+    font-size: 1em;
+	font-weight: lighter;
+	cursor: pointer;
+	&.small {
+		font-size: 1em;
+	}
+	&.control-button {
+		padding: 0px;
+		height: 19%;
+		width: 9%;
+		background-color: #212121;
+		border: none;
+		border-radius: 1px;
+		cursor: pointer;
+		font-size: 14px;
+		color: #fff;
+		border-radius: 150px;
+		&.small {
+			font-size: 1em;
+		}
+	}
+	&.seat-option {
+		opacity: 0.5;
+		width: 100% !important;
+	}
+	&.active {
+		opacity: 1.0;
+	}
+}
+
+h1, h2, h3, h4, h5 {
+	margin-top: 0;
+}
+
+a {
+	text-decoration: none;
+	font-family: Arial;
+	color: @light-purple;
+	font-size: 1em;
+	white-space: nowrap;
+}
+
+.hidden {
+	display: none;
+}
+
+.error {
+	color: #D64937;
+}
+
+#content {
+	margin: 0 auto;
+	width: 100%;
+	height: 100%;
+}
+
+table, tr, th, td {
+	border: 1px solid @light-purple;
+	color: @light-purple;
+	border-collapse: collapse;
+	padding: 8px;
+}
+
+table {
+	width: 100%;
+}
+
+#table-wrap {
+	position: relative;
+	-webkit-user-select: none; /* Chrome/Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+ */
+
+	/* Rules below not implemented in browsers yet */
+	-o-user-select: none;
+	user-select: none;
+}
+
+#table-wrap *:focus {
+    outline: none;
+}
+
+#table-list {
+	th {
+		color: #2e1f3e;
+		background-color: #9880e9;
+		&.dark-border {
+			border-right: 1px solid #2e1f3e;
+		}
+	}
+	.centered-text {
+		text-align: center;
+	}
+	margin: 40px 0 0;
+}
+
+#table {
+	background-color: transparent;
+    border-radius: 1000px;
+    height: 50%;
+    left: 50%;
+    position: absolute;
+    top: 39%;
+    width: 75%;
+    z-index: 0;
+    box-shadow: 0 0 25px 0 #000000;
+    transform: translate(-50%, -50%);
+    #felt {
+		background: url(/images/table-background.png) #131313 no-repeat center;
+		background-size: 36%;
+		border-radius: 1000px;
+		width: 96%;
+		height: 88%;
+		position: relative;
+		top: 6%;
+		left: 2%;
+		box-shadow: 0 0 20px 0 #000000 inset;
+	}
+}
+
+#circle-holder {
+	width: 0px;
+	height: 0px;
+	background: #fff;
+	position: relative;
+	z-index:5;
+}
+
+div.row {
+	height: 25%;
+	width: 100%;
+	position: relative;
+	z-index: 2;
+	&.controls {
+		background-color: @felt-green;
+		border-radius: 8px;
+		z-index: 1;
+	}
+}
+
+div.cell {
+	float: left;
+	width: 25%;
+	height: 100%;
+	position: relative;
+
+	button {
+		margin: 22.5% 15%;
+	}
+}
+
+div.double-cell {
+	float: left;
+	width: 50%;
+	height: 100%;
+	.seat {
+		padding: 2% 0;
+	}
+}
+
+div.controls {
+	div.cell {
+		width: 15%;
+	}
+	div.double-cell {
+		width: 30%;
+		.cell-content {
+			padding: 8%;
+		}
+	}
+	div.chat-cell {
+		float: left;
+		width: 25%;
+	}
+}
+
+input[type="range"] {
+	-webkit-appearance: none;
+	width: 30%;
+	height: 13px;
+	border-radius: 5px;  
+	background: #d3d3d3;
+	outline: none;
+	opacity: 0.7;
+	-webkit-transition: .2s;
+	transition: opacity .2s;
+  }
+  
+  input[type="range"]::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 18px;
+	height: 18px;
+	border-radius: 50%; 
+	background: #41aaff;
+	cursor: pointer;
+  }
+  
+  input[type="range"]::-moz-range-thumb {
+	width: 18px;
+	height: 18px;
+	border-radius: 50%;
+	background: #41aaff;
+	cursor: pointer;
+  }
+
+.betAmountButton {
+	display: inline-block;
+    width: 20px;
+    height: 22px;
+    color: #fff;
+    background: rgba(125, 125, 125, 0.58);
+    /* border: 1px solid; */
+    text-align: center;
+    border-radius: 100%;
+    vertical-align: middle;
+    line-height: 1.1;
+    font-size: 20px;
+    padding: 0px 1px 0px 1.5px;
+    cursor: pointer;
+}
+
+.subtract {
+	line-height: 0.9;
+}
+
+.sitIn {
+	padding: 3% 34%;
+	cursor: pointer;
+}
+
+.table-requirements {
+	display: block;
+	margin: 5px;
+}
+
+div#chat {
+	div#messages {
+		div.messages {
+			border: 1px solid #868686;
+			border-radius: 8px;
+			margin: 8px 8px 0 8px;
+			background-color: rgba(0,0,0,0.5);
+			padding: 8px;
+			z-index: 9999;
+			display: block;
+			p {
+				margin: 0;
+				word-wrap: break-word;
+	
+				&.log-message {
+					color: #cecece;
+					font-size: 13px;
+				}
+			}
+		}
+	}
+	
+	input[type="submit"] {
+		font-size: 1.3em;
+		padding: 5px 8px;
+		margin: 1px 0 0 2px;
+	    background-color: rgba(46, 31, 62, 0.9);
+	    border-radius: 8px;
+	}
+	input[type="text"] {
+		width: 197px;
+		font-size: 1em;
+		margin: 3px 0 0 8px;
+		padding: 9px;
+		transform: translate(0px, -2px);
+		border-radius: 8px;
+	}
+}
+
+div.player-wrap {
+	width: 173px;
+	/*
+	&.top {
+		margin-top: 15%;
+	}
+	&.top-left {
+		position: relative;
+		top: -40%;
+		left: 10%;
+	}
+	&.top-right-corner {
+		position: absolute;
+		top: -40%;
+		left: -37%;
+	}
+	&.top-middle {
+		position: absolute;
+		left: 42%;
+		top: -63%;
+	}
+	&.bottom {
+		position: absolute;
+		bottom: 26%;
+		left: 36%;
+	}
+	&.bottom-right-corner {
+		position: absolute;
+		top: 20%;
+		left: 12%;
+	}
+	&.right {
+		position: absolute;
+		left: -8%;
+		top: 20%
+	}
+	&.side {
+		margin-top: 32%;
+	}
+	&.middle {
+		position: absolute;
+		left: 15%;
+  	 	top: 33%;
+	}
+	&.middle-bottom-corner {
+		position: absolute;
+		top: 47%;
+		right: 17%;	
+	}
+	&.middle-top-corner {
+		position: absolute;
+		right: 25%;
+		top: -34%;
+	}
+	&.bottom-left-corner {
+		position: absolute;
+		top: 26%;
+		left: 53%;
+	}
+	&.bottom-right-corner {
+		position: absolute;
+		top: 29%;
+		right: 50%;
+		left: initial;
+	}
+	&.top-left-corner {
+		position: absolute;
+		left: 90%;
+    	top: -40%;
+	}*/
+
+	.player-cards {
+		overflow: hidden;
+		height: 58px;
+		left: 44px;
+		position: absolute;
+		top: -50px;
+		width: 99px;
+		-webkit-transition: top 0.4s ease;
+		transition: top 0.4s ease;
+	
+	    &.dealt {
+			top: -57px;
+			
+			/*.card:first-child {
+				left: 0;
+			}
+			.card {
+				left: 45px;
+				position: absolute;
+				top: 8px;
+			}*/
+	    }
+	}
+}
+div.seat {
+	width: 170px;
+    padding: 2% 0;
+    background: linear-gradient(180deg, #171717, #1b1b1b);
+    border: 1px solid #3e3e3e;
+    border-radius: 400px;
+    color: #9c63e6;
+    font-size: 1em;
+    font-weight: lighter;
+    text-align: center;
+    box-shadow: 0 0 5px 0 #160726;
+    -webkit-transition: box-shadow .2s ease,border .2s ease,opacity .2s ease-in-out;
+    transition: box-shadow .2s ease,border .2s ease,opacity .2s ease-in-out;
+    z-index: 2;
+	&.active {
+		color: #ffffff;
+		border: 1px solid #696969;
+		box-shadow: 0 0 5px 1px #000000;	
+	}
+	p {
+		text-overflow: ellipsis;
+		overflow: hidden;
+		margin: 0;
+	}
+	.player-content {
+		span {
+			line-height: 1.0;
+			display: block;
+		}
+		.notification {
+			line-height: 2;
+		}
+	}
+}
+
+div.board-wrap {
+	margin: 3% 0% 3% 0%;
+    text-align: center;
+	.card {
+		box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+		border-radius: 8px;
+		margin: 0 auto;
+		opacity: 1;
+	}
+}
+
+.card-container {
+	width: 7%;
+	height: 66px;
+	display: inline-block;
+}
+
+.player-cards .card-container {
+	width: 41px;
+}
+
+.card {
+	background-image: url(/images/deck.png);
+    background-size: 648px auto;
+    border-radius: 8px 8px 0 0;
+    height: 100%;
+    box-shadow: 0 0 3px 0 #808080;
+    overflow: hidden;
+    width: 44px;
+    height: 66px;
+    /**
+	 * CSS Sprites
+	 */
+	&.card-face-As {
+		background-position: 0.2% 0.5%;
+	}
+	&.card-face-Ah {
+		background-position: 0.2% 99.3%;
+	}
+	&.card-face-Ad {
+		background-position: 0.2% 66.5%;
+	}
+	&.card-face-Ac {
+		background-position: 0.2% 33.3%;
+	}
+	&.card-face-Ks {
+		background-position: 7.9% 0.5%;
+	}
+	&.card-face-Kh {
+		background-position: 7.9% 99.3%;
+	}
+	&.card-face-Kd {
+		background-position: 7.9% 66.5%;
+	}
+	&.card-face-Kc {
+		background-position: 7.9% 33.3%;
+	}
+	&.card-face-Qs {
+		background-position: 15.5% 0.5%;
+	}
+	&.card-face-Qh {
+		background-position: 15.5% 99.3%;
+	}
+	&.card-face-Qd {
+		background-position: 15.5% 66.5%;
+	}
+	&.card-face-Qc {
+		background-position: 15.5% 33.3%;
+	}
+	&.card-face-Js {
+		background-position: 23.2% 0.5%;
+	}
+	&.card-face-Jh {
+		background-position: 23.2% 99.3%;
+	}
+	&.card-face-Jd {
+		background-position: 23.2% 66.5%;
+	}
+	&.card-face-Jc {
+		background-position: 23.2% 33.3%;
+	}
+	&.card-face-Ts {
+		background-position: 30.9% 0.5%;
+	}
+	&.card-face-Th {
+		background-position: 30.9% 99.3%;
+	}
+	&.card-face-Td {
+		background-position: 30.9% 66.5%;
+	}
+	&.card-face-Tc {
+		background-position: 30.9% 33.3%;
+	}
+	&.card-face-9s {
+		background-position: 38.6% 0.5%;
+	}
+	&.card-face-9h {
+		background-position: 38.6% 99.3%;
+	}
+	&.card-face-9d {
+		background-position: 38.6% 66.5%;
+	}
+	&.card-face-9c {
+		background-position: 38.6% 33.3%;
+	}
+	&.card-face-8s {
+		background-position: 46.3% 0.5%;
+	}
+	&.card-face-8h {
+		background-position: 46.3% 99.3%;
+	}
+	&.card-face-8d {
+		background-position: 46.3% 66.5%;
+	}
+	&.card-face-8c {
+		background-position: 46.3% 33.3%;
+	}
+	&.card-face-7s {
+		background-position: 53.8% 0.5%;
+	}
+	&.card-face-7h {
+		background-position: 53.8% 99.3%;
+	}
+	&.card-face-7d {
+		background-position: 53.8% 66.5%;
+	}
+	&.card-face-7c {
+		background-position: 53.8% 33.3%;
+	}
+	&.card-face-6s {
+		background-position: 61.5% 0.5%;
+	}
+	&.card-face-6h {
+		background-position: 61.5% 99.3%;
+	}
+	&.card-face-6d {
+		background-position: 61.5% 66.5%;
+	}
+	&.card-face-6c {
+		background-position: 61.5% 33.3%;
+	}
+	&.card-face-5s {
+		background-position: 69.2% 0.5%;
+	}
+	&.card-face-5h {
+		background-position: 69.2% 99.3%;
+	}
+	&.card-face-5d {
+		background-position: 69.2% 66.5%;
+	}
+	&.card-face-5c {
+		background-position: 69.2% 33.3%;
+	}
+	&.card-face-4s {
+		background-position: 76.8% 0.5%;
+	}
+	&.card-face-4h {
+		background-position: 76.8% 99.3%;
+	}
+	&.card-face-4d {
+		background-position: 76.8% 66.5%;
+	}
+	&.card-face-4c {
+		background-position: 76.8% 33.3%;
+	}
+	&.card-face-3s {
+		background-position: 84.5% 0.5%;
+	}
+	&.card-face-3h {
+		background-position: 84.5% 99.3%;
+	}
+	&.card-face-3d {
+		background-position: 84.5% 66.5%;
+	}
+	&.card-face-3c {
+		background-position: 84.5% 33.3%;
+	}
+	&.card-face-2s {
+		background-position: 92.1% 0.5%;
+	}
+	&.card-face-2h {
+		background-position: 92.1% 99.3%;
+	}
+	&.card-face-2d {
+		background-position: 92.1% 66.5%;
+	}
+	&.card-face-2c {
+		background-position: 92.1% 33.3%;
+	}
+	&.card-back {
+		background-position: 99.8% 33.3%;
+	}
+}
+
+.dealer-button {
+    position: absolute;
+	border-radius: 20px;
+    width: 24px;
+    height: 24px;
+    color: #333333;
+    text-align: center;
+    background-color: rgba(220,220,220,0.9);
+    line-height: 24px;
+    box-shadow: 0 3px 0 0 #717171;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.bets {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    font-weight: bold;
+    text-shadow: 0 0 4px rgba(0,0,0,0.5);
+    font-size: 15px;
+	color: #fff;
+	transition: bottom .4s ease-in-out, left .4s ease-in-out;
+	-webkit-transition: bottom .4s ease-in-out, left .4s ease-in-out;
+}
+
+#pot-wrap {
+	height: 20%;
+	text-align: center;
+	#pot {
+		display: inline-block;
+		/* width: 100%; */
+		text-align: center;
+		/* font-weight: bold; */
+		background: rgba(0,0,0,0.5);
+		text-shadow: 0 0 4px rgba(0,0,0,0.5);
+		padding: 6px;
+		border-radius: 3px;
+		color: #fff;
+	}
+}
+
+#to-lobby {
+	font-size: 1em;
+	position: absolute;
+	top: 2%;
+	left: 2%;
+	color: #fff;
+	img {
+		width: 16px;
+		vertical-align: middle;
+		margin-top: 0px;
+		margin-bottom: 0px;
+	}
+}
+
+.modal-wrap {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+	.modal {
+		padding: 24px;
+		background-color: #232323;
+		border-radius: 5px;
+		position: relative;
+		margin: 0 auto;
+		top: 18%;
+		width: 350px;
+		z-index: 101;
+		border: 1px solid #6d6d6d;
+		color: #fff;
+		max-height: 65%;
+		label {
+			display: inline-block;
+		    font-size: 16px;
+			margin-bottom: 20px;
+		}
+		.input-left {
+			margin-right: 10px;
+			width: 25%;
+		}
+		input[type="number"] {
+			padding: 3px;
+			width: 75px;
+			border: none;
+			border-radius: 0px;
+			color: #272727;
+			font-size: 18px;
+			background: #dcdcdc;
+		}
+		.button {
+			width: 60%;
+			display: block;
+			margin: auto;
+			background: #8654c7;
+			color: #fff;
+			border-radius: 150px;
+		}
+	}
+	#curtain, .curtain {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0, 0, 0, 0.4);
+		z-index: 2;
+	}
+
+	/* Customize the label (the container) */
+	.container {
+		display: block;
+		position: relative;
+		margin-bottom: 12px;
+		cursor: pointer;
+		font-size: 18px;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+		background: transparent;
+		padding: 5px;
+		padding-left: 35px;
+	}
+	
+	/* Hide the browser's default checkbox */
+	.container input {
+		position: absolute;
+		opacity: 0;
+		cursor: pointer;
+		height: 0;
+		width: 0;
+	}
+	
+	/* Create a custom checkbox */
+	.checkmark {
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 25px;
+		width: 25px;
+		background-color: #eee;
+	}
+	
+	/* On mouse-over, add a grey background color */
+	.container:hover input ~ .checkmark {
+		background-color: #ccc;
+	}
+	
+	/* When the checkbox is checked, add a blue background */
+	.container input:checked ~ .checkmark {
+		background-color: #742dd2;
+	}
+	
+	/* Create the checkmark/indicator (hidden when not checked) */
+	.checkmark:after {
+		content: "";
+		position: absolute;
+		display: none;
+	}
+	
+	/* Show the checkmark when checked */
+	.container input:checked ~ .checkmark:after {
+		display: block;
+	}
+	
+	/* Style the checkmark/indicator */
+	.container .checkmark:after {
+		left: 9px;
+		top: 5px;
+		width: 5px;
+		height: 10px;
+		border: solid white;
+		border-width: 0 3px 3px 0;
+		-webkit-transform: rotate(45deg);
+		-ms-transform: rotate(45deg);
+		transform: rotate(45deg);
+	}
+}
+
+.purple {
+	color: @light-purple;
+}
+
+#developer-info {
+	margin-top: 8px;
+	font-size: 0.8em;
+	a {
+		text-decoration: underline;
+	}
+}
+
+/* Landscape phone to portrait tablet */
+@media screen and (max-width: 767px), screen and (max-device-width: 480px)  {
+	/*#content {
+		width: 480px;
+		height: 320px;
+	}
+
+	body {
+		font-size: 0.5em;
+	}
+
+	#to-lobby {
+		padding: 10px;
+		font-size: 1.3em;
+	}
+	
+	div.player-wrap {
+		margin: 44% auto 0;
+		&.top {
+    		margin-top: 36%;
+		}
+		&.side {
+    		margin-top: 28%;
+		}
+		.player-cards {
+			left: 8px;
+			height: 25px;
+			top: -60px;
+			&.dealt {
+				top: -25px;
+			}
+		}
+	}
+
+	*/
+
+	.table-requirements {
+		font-size: 1.6em;
+	}
+
+	
+
+	.card {
+		background-size: 460px auto;
+		width: 32px;
+		height: 47px;
+	}
+
+	#pot {
+		font-size: 1.6em;
+	}
+
+	.bets {
+		font-size: 18px;
+	}
+
+	div.row.controls {
+		.chat-cell {
+			display: none;
+		}
+		.cell {
+			width: 20%;
+			button {
+				margin: 15%;
+			}
+		}
+		.double-cell {
+			width: 40%;
+			.cell-content {
+			    padding: 4% 8%;
+			    input[type="range"] {
+				    margin-top: 0;
+				}
+				#bet-input {
+				    margin-top: 5px;
+				}
+			}
+		}
+	}
+
+	.modal-wrap .modal {
+		width: 300px;
+		.input-left {
+			font-size: 2em;
+		}
+	}
+
+	#developer-info {
+		font-size: 1.4em;
+	}
+}
+
+
+
+.player-timer {
+	background: #191919;
+    width: 113px;
+    height: 10px;
+    padding: 2px 2px 8px 8px;
+    position: absolute;
+    border-radius: 0px 0px 12px 12px;
+    bottom: -26px;
+    left: 24px;
+    border: 1px solid #4a4a4a;
+    border-top: none;
+    text-align: left;
+    font-size: 14px;
+    color: #fff;
+    font-weight: bold;
+	.main-timer-holder {
+		width: calc(100% - 25px);
+    	display: inline-block;
+	}
+	.timer-text {
+		width: 20px;
+		display: inline-block;
+		text-align: center;
+	}
+	.timer-holder {
+		width: 100%;
+		height: 100%;
+		display: inline-block;
+		overflow: hidden;
+		border-radius: 40px;
+		transition: width .4s ease-in-out;
+		-webkit-transition: width .4s ease-in-out;
+		.filler {
+			width: 122px;
+			height: 100%;
+			background: #fff;
+			border-radius: 40px;
+		}
+	}
+	
+}
+
+/* Portrait tablet to landscape and desktop */
+@media screen and (min-width: 768px) and (max-width: 1024px) { 
+	/*#content {
+		width: 768px;
+		height: 576px;
+	}
+
+	body {
+		font-size: 0.75em;
+	}
+	
+	div.player-wrap {
+		margin: 34% auto 0;
+		.player-cards {
+			left: 17px;
+			height: 50px;
+			&.dealt {
+				top: -50px;
+			}
+		}
+	}
+	*/
+
+	div.seat {
+		width: 145px;
+		.player-timer {
+			width: 78px;
+			.main-timer-holder {
+				width: 68%
+			}
+		}
+	}
+
+	.player-timer {
+		width: 97px;
+		padding: 2px 7px 8px 8px;
+	}
+
+	.player-cards .card-container {
+		width: 35px;
+	}
+
+	.card {
+		background-size: 546px auto;
+		width: 37px;
+		height: 58px;
+	}
+
+	.bets {
+		font-size: 18px;
+	}
+
+	div#chat input[type="text"] {
+		width: 137px;
+		font-size: 1.3em;
+		padding: 8px;
+	}
+
+	div#chat input[type="submit"] {
+		transform: translate(0px, -2px);
+		padding: 7px 8px;
+	}
+
+	#pot {
+		font-size: 1.3em;
+	}
+
+	.modal-wrap .modal {
+		width: 320px;
+	}
+
+	#developer-info {
+		font-size: 1em;
+	}
+}
+
+.sr-only {
+	border: 0 !important;
+	clip: rect(1px, 1px, 1px, 1px) !important; /* 1 */
+	-webkit-clip-path: inset(50%) !important;
+		clip-path: inset(50%) !important;  /* 2 */
+	height: 1px !important;
+	margin: -1px !important;
+	overflow: hidden !important;
+	padding: 0 !important;
+	position: absolute !important;
+	width: 1px !important;
+	white-space: nowrap !important;            /* 3 */
+}
+
+.poker-header {
+	color: #fff;
+	height: 11%;
+}
+
+#waitingNotification {
+	height: 100%;
+	.notificationHolder {
+		background: rgba(0,0,0,0.6);
+		width: 290px;
+		margin: auto;
+		padding: 10px;
+		text-align: center;
+		color: #fff;
+	}
+}
+
+.poker-header img {
+	margin-top: 30px;
+	margin-bottom: 5px;
+}
+
+/*
+.poker-options {
+    padding-top: 30px;
+}*/
+
+.poker-options td {
+	width: 25%;
+}
+
+.poker-controls {
+	background: rgba(0,0,0,0.22);
+    height: 100%;
+	width: 100%;
+	.container {
+		display: block;
+		position: relative;
+		padding: 0px;
+		background: transparent;
+		padding-left: 35px;
+		margin-bottom: 12px;
+		cursor: pointer;
+		font-size: 15px;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+	  }
+	  
+	  /* Hide the browser's default radio button */
+	  .container input {
+		position: absolute;
+		opacity: 0;
+		cursor: pointer;
+		height: 0;
+		width: 0;
+	  }
+	  
+	  /* Create a custom radio button */
+	  .checkmark {
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 16px;
+		width: 16px;
+		background-color: #eee;
+		border-radius: 50%;
+	  }
+	  
+	  /* On mouse-over, add a grey background color */
+	  .container:hover input ~ .checkmark {
+		background-color: #ccc;
+	  }
+	  
+	  /* When the radio button is checked, add a blue background */
+	  .container input:checked ~ .checkmark {
+		background-color: #2196F3;
+	  }
+	  
+	  /* Create the indicator (the dot/circle - hidden when not checked) */
+	  .checkmark:after {
+		content: "";
+		position: absolute;
+		display: none;
+	  }
+	  
+	  /* Show the indicator (dot/circle) when checked */
+	  .container input:checked ~ .checkmark:after {
+		display: block;
+	  }
+	  
+	  /* Style the indicator (dot/circle) */
+	  .container .checkmark:after {
+		top: 4px;
+		left: 4px;
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		background: white;
+	  }
+}
+
+.poker-controls button.control-button {
+    height: 31px;
+    width: 129px;
+    margin: 6px;
+}
+
+.poker-controls button.control-button:hover {
+    background: #303030;
+}
+
+.poker-controls button.control-button img {
+	width: 17px;
+    height: 17px;
+    vertical-align: bottom;
+    margin-right: 6px;
+}
+
+.poker-controls table {
+	width: 75%;
+    margin: auto;
+}
+
+.poker-controls table td {
+	text-align: center;
+}
+
+.poker-controls table td:first-child {
+	text-align: right;
+}
+
+.pot-option {
+    width: 70px;
+    border-radius: 104px;
+    border: none;
+    color: #dadada;
+    padding: 5px 0px;
+    font-size: 11px;
+    background: #676767;
+}
+
+.prehandOptions { 
+	text-align: center;
+    font-size: 13px;
+    color: #1d1d1d;
+    margin-top: 10px;
+	.option {
+		display: inline-block;
+		background: #272727;
+		color: #fff;
+		border-radius: 103px;
+		width: 75px;
+		height: 24px;
+		cursor: pointer;
+		label {
+			vertical-align: middle;
+			cursor: pointer;
+			input {
+				vertical-align: bottom;
+				cursor: pointer;
+			}
+		}
+	}
+	.option:hover {
+		background: #181818;
+	}
+}
+
+.pot-option:hover {
+	color: rgb(255, 255, 255);
+}
+
+.folded {
+	/*background: rgb(160, 160, 160);
+    color: #4c4c4c;
+	border: 1px solid #757575;*/
+	opacity: 0.6;
+}
+
+.buyInOptions {
+	width: 90%;
+    height: 80px;
+    background: #3f3f3f;
+    margin: 5px auto 15px;
+    vertical-align: top;
+	.buy-option {
+		width: 31.49%;
+		height: 100%;
+		text-align: center;
+		color: #fff;
+		display: inline-block;
+		vertical-align: top;
+		.title {
+			height:40%;
+			margin-top: 5px;
+			vertical-align: middle;
+		}
+		.option {
+			height:60%;
+			vertical-align: middle;
+		}
+	}
+	.buy-option:hover {
+		background: #575757;
+		cursor: pointer;
+	}
+	.active {
+		background: #575757;
+	}
+}
+
+.bold {
+	font-weight: bold;
+}
+
+#handName {
+	position: absolute;
+    bottom: 20px;
+    right: 40px;
+    background: rgba(0,0,0,0.6);
+    padding: 8px;
+    color: #b3b3b3;
+    font-size: 12px;
+}
+
+.deposit-box {
+	position: absolute;
+    bottom: 52px;
+    left: 0px;
+    width: 131px;
+    background: rgba(239, 239, 239, 0.9);
+    padding: 10px;
+    color: black;
+	border-radius: 3px;
+	z-index: 999;
+    box-shadow: 0px 0px 8px 0px #6b6b6b;
+	input[type="text"] {
+		padding: 4px;
+		border-radius: 1px;
+		width: 49%;
+		background: #ffffff;
+		border: 1px solid #b1b1b1;
+		color: #000;
+		font-size: 15px;
+		text-align: center;
+	}
+
+	button.buy-button {
+		margin: 0px;
+		padding: 4px 8px;
+		color: #000;
+		background: #ffffff;
+		border: 1px solid #5f5f5f;
+		border-radius: 2px;
+		border: 1px solid #9c9c9c;
+	}
+
+	.table {
+		width: 100%;
+		td {
+			padding: 0px;
+			text-align: left;
+			color: #000;
+			font-size: 12px;
+		}
+		td:first-child {
+			text-align: left;
+		}
+	}
+}
+
+.triangle-down {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 12px solid #dedede;
+    position: absolute;
+    bottom: -12px;
+    left: 43%;
+}
+
+.timeBank {
+	background: rgba(56,56,56,0.6);
+    padding: 5px 8px;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.game-content {
+	background: radial-gradient(#00448a 29%, #00152b 90%);
+	width:100%;
+	height: 100%;
+}
+
+.edit-table input[type="text"] {
+	padding: 3px;
+    border-radius: 1px;
+    width: 140px;
+    font-size: 14px;
+}
+
+.edit-table .modal {
+	overflow-y: scroll;
+}
+
+.admin-controls {
+	float: right;
+	div:hover {
+		text-decoration: underline;
+	}
+}

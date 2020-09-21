@@ -1,0 +1,23 @@
+html(lang="en" ng-app="app")
+	head
+		title Rush Poker
+
+		link(href="styles/main.css" rel="stylesheet" type="text/css")
+		link(href="styles/styles.css" rel="stylesheet" type="text/css")
+		link(href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet")
+	body
+		#content(ng-view)
+		script(type="text/javascript", src="socket.io/socket.io.js")
+		script(type="text/javascript", src="js/libs/jquery.min.js")
+		script(type="text/javascript", src="js/libs/jquery.flip.min.js")
+		script(type="text/javascript", src="js/libs/angular.min.js")
+		script(type="text/javascript", src="js/libs/angular-route.min.js")
+		// script(type="text/javascript", src="https://code.angularjs.org/1.8.0/angular-animate.min.js")
+		script(type="text/javascript", src="js/main.js")
+		script(type="text/javascript", src="js/controllers/lobby.js")
+		script(type="text/javascript", src="js/controllers/table.js")
+		script(type="text/javascript", src="js/controllers/chat.js")
+		script(type="text/javascript", src="js/services/sounds.js")
+		script(type="text/javascript", src="js/directives/seat.js")
+		script(type="text/javascript", src="js/directives/board.js")
+		script(type="text/javascript", src="js/directives/tonumber.js")

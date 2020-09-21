@@ -1,0 +1,168 @@
+<div class="navbar">
+	<div class="left">
+		<a href="./" target="_self"><img src="/images/spade-logo.png" height="80%" /></a>
+	</div>
+
+	<div class="right">
+		<img src="/images/user.png" height="11px">
+		{{screenName}} | Balance: {{totalChips}} pts
+		<div ng-if="isAdmin" style="display: inline;margin-left:3px;"><a href="/admin" target="_self" style="color:#33f4ff;">Admin</a> | </div>
+		<a href="/logout" target="_self" type="submit">Logout</a>
+	</div>
+</div>
+
+<div class="modal-wrap" ng-show="joinTableModalVisible">
+	<div class="modal">
+		<div class="center" style="margin-bottom: 20px;">
+			<h1>{{lobbyTables[selectedTable].name}}</h1>
+			<span class="bold purple">Playable Balance: {{$root.totalChips}}</span>
+		</div>
+		<span>Select Buy-In Amount:</span>
+		<div class="buyInOptions center">
+			<div class="buy-option" ng-class="{active: buyInSelection === 1}" ng-click="selectBuyIn(1)">
+				<div class="bold title"><span>Maximum</span></div>
+				<div class="option"><span>{{lobbyTables[selectedTable].maxBuyIn}}</span></div>
+			</div>
+			<div class="buy-option" ng-class="{active: buyInSelection === 2}" ng-click="selectBuyIn(2)">
+				<div class="bold title"><span>Minimum</span></div>
+				<div class="option"><span>{{lobbyTables[selectedTable].minBuyIn}}</span></div>
+			</div>
+			<div class="buy-option" ng-class="{active: buyInSelection === 3}" ng-click="selectBuyIn(3)">
+				<div class="bold title">Other</div>
+				<div class="option">
+					<input type="number" ng-model="buyInAmount" min="{{lobbyTables[selectedTable].minBuyIn}}" max="{{lobbyTables[selectedTable].maxBuyIn}}" ng-trim="true">
+				</div>
+			</div>
+		</div>
+		<span class="table-requirements center">
+			<label class="container">Wait for big blind
+				<input type="checkbox" ng-model="waitForBigBlind">
+				<span class="checkmark"></span>
+			</label>
+			
+		<span class="table-requirements error" ng-show="buyInError">{{buyInError}}</span>
+		<br />
+		<a ng-click="sitInTable()" class="button">Sit in</a>
+	</div>
+	<div id="curtain" ng-show="joinTableModalVisible" ng-click="closeJoinTableModal()"></div>
+</div>
+
+<div class="modal-wrap edit-table" ng-if="isAdmin" ng-show="editTableModalVisible">
+	<div class="modal">
+		<div class="center" style="margin-bottom: 20px;">
+			<h1><span style="color: red;">{{lobbyTables[editTableId].name}}</span></h1>
+		</div>
+		<table class="table table-borderless" style="font-size: 14px;">
+			<tr>
+				<td>Name:</td>
+				<td><input type="text" id="editTableName" value="{{editTableData.name}}"></td>
+			</tr>
+			<tr>
+				<td>Description:</td>
+				<td><input type="text" id="editTableDescription" value="{{editTableData.description}}"></td>
+			</tr>
+			<tr>
+				<td>SB/BB:</td>
+				<td>
+					<input type="text" id="editTableSB" value="{{editTableData.smallBlind}}" style="width: 63px;"> /
+					<input type="text" id="editTableBB" value="{{editTableData.bigBlind}}" style="width: 63px;">
+				</td>
+			</tr>
+			<tr>
+				<td>Min Players:</td>
+				<td><input type="text" id="editTableMinPlayers" value="{{editTableData.minPlayers}}"></td>
+			</tr>
+			<tr>
+				<td>Max Players:</td>
+				<td><input type="text" id="editTableMaxPlayers" value="{{editTableData.seatsCount}}"></td>
+			</tr>
+			<tr>
+				<td>Min Buy In:</td>
+				<td><input type="text" id="editTableMinBuyIn" value="{{editTableData.minBuyIn}}"></td>
+			</tr>
+			 <tr>
+				 <td>Max Buy In:</td>
+				 <td><input type="text" id="editTableMaxBuyIn" value="{{editTableData.maxBuyIn}}"></td>
+			 </tr>
+			 <tr>
+				 <td>Time Bank:</td>
+				 <td><input type="text" id="editTableTimeBank" value="{{editTableData.timeBank}}"></td>
+			 </tr>
+			<tr>
+				<td>Raise Blinds Time:</td>
+				<td><input type="text" id="editTableRaiseBlinds" value="{{editTableData.raiseBlinds}}"></td>
+			</tr>
+			<tr>
+				<td>Rake Preflop Min:</td>
+				<td><input type="text" id="editTableRakeMinPreflopPot" value="{{editTableData.rakeInfo.rakeMinPreflopPot}}"></td>
+			</tr>
+			<tr>
+				<td>Preflop rake ($):</td>
+				<td><input type="text" id="editTableRakePreflopPot" value="{{editTableData.rakeInfo.rakePreflopPot}}"></td>
+			</tr>
+			<tr>
+				<td>Postflop rake (%):</td>
+				<td><input type="text" id="editTableRakePostflopPercent" value="{{editTableData.rakeInfo.rakePostflopPercent}}"></td>
+			</tr>
+			<tr>
+				<td>Max rake postflop:</td>
+				<td><input type="text" id="editTableRakePostflopMax" value="{{editTableData.rakeInfo.rakePostflopMax}}"></td>
+			</tr>
+			<tr>
+				<td>Total Rake:</td>
+				<td>{{editTableData.rakeInfo.rakeTotal}}</td>
+			</tr>
+		</table>
+		<br />
+		<a ng-click="updateTable()" class="button" style="width:56px;">Confirm</a>
+	</div>
+	<div class="curtain" ng-show="editTableModalVisible" ng-click="closeEditTable()"></div>
+</div>
+
+<div id="lobby">
+	<div class="container no-background center">
+		<div class="content">
+			<br />
+			<div class="title"><h1 style="color: #000;">Poker Tables</h1></div>
+			<div id="table-node-holder">
+				<div class="table-node" id="table-{{table.id}}" ng-repeat="table in lobbyTables">
+					<div style="vertical-align: middle">
+						<img src="/images/poker-game.png" width="25px" />
+						<h2 style="display: inline;">{{table.name}}</h2>
+						<div ng-if="isAdmin" class="admin-controls">
+							<div ng-click="editTableModal( table.id )" style="display: inline-block;cursor:pointer;">Edit</div>
+							<div ng-click="deleteTable( table.id )" style="display: inline-block;cursor: pointer">X</div>
+						</div>
+					</div>
+					<div class="table-info">
+						<table class="table table-borderless">
+							<tr>
+								<td><b>Description:</b></td>
+								<td>{{table.description}}</td>
+							</tr>
+							<tr>
+								<td><b>Blinds:</b></td>
+								<td>{{table.smallBlind}} / {{table.bigBlind}}</td>
+							</tr>
+							<tr>
+								<td><b>Seats:</b></td>
+								<td>{{table.playersSeatedCount}}/{{table.seatsCount}}</td>
+							</tr>
+							<tr>
+								<td><b>Minimum Players:</b></td>
+								<td>{{table.minPlayers}}</td>
+							</tr>
+							<tr>
+								<td><b>Start time:</b></td>
+								<td>{{table.startTime}}</td>
+							</tr>
+						</table>
+					</div>
+					<div class="center" style="margin-top: 15px">
+						<a ng-click="showJoinTableModal(table.id)" style="cursor: pointer;">Join Table</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

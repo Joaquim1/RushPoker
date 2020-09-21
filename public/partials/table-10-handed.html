@@ -1,0 +1,198 @@
+<div class="game-content">
+	<div id="table-wrap">
+		<div id="circle-holder">
+			<seat player="table.seats[getSeat(0)]" active-seat="table.activeSeat" dealer-seat="table.dealerSeat" seats-count="table.seatsCount" my-seat="mySeat" action-state="actionState" my-cards="myCards" sitting-on-table="$root.sittingOnTable" notifications="notifications" turn-timer="turnTimer" seat-index="0"></seat>
+			<seat player="table.seats[getSeat(1)]" active-seat="table.activeSeat" dealer-seat="table.dealerSeat" seats-count="table.seatsCount" my-seat="mySeat" action-state="actionState" my-cards="myCards" sitting-on-table="$root.sittingOnTable" notifications="notifications" turn-timer="turnTimer" seat-index="1"></seat>
+			<seat player="table.seats[getSeat(2)]" active-seat="table.activeSeat" dealer-seat="table.dealerSeat" seats-count="table.seatsCount" my-seat="mySeat" action-state="actionState" my-cards="myCards" sitting-on-table="$root.sittingOnTable" notifications="notifications" turn-timer="turnTimer" seat-index="2"></seat>
+			<seat player="table.seats[getSeat(3)]" active-seat="table.activeSeat" dealer-seat="table.dealerSeat" seats-count="table.seatsCount" my-seat="mySeat" action-state="actionState" my-cards="myCards" sitting-on-table="$root.sittingOnTable" notifications="notifications" turn-timer="turnTimer" seat-index="3"></seat>
+			<seat player="table.seats[getSeat(4)]" active-seat="table.activeSeat" dealer-seat="table.dealerSeat" seats-count="table.seatsCount" my-seat="mySeat" action-state="actionState" my-cards="myCards" sitting-on-table="$root.sittingOnTable" notifications="notifications" turn-timer="turnTimer" seat-index="4"></seat>
+			<seat player="table.seats[getSeat(5)]" active-seat="table.activeSeat" dealer-seat="table.dealerSeat" seats-count="table.seatsCount" my-seat="mySeat" action-state="actionState" my-cards="myCards" sitting-on-table="$root.sittingOnTable" notifications="notifications" turn-timer="turnTimer" seat-index="5"></seat>
+			<seat player="table.seats[getSeat(6)]" active-seat="table.activeSeat" dealer-seat="table.dealerSeat" seats-count="table.seatsCount" my-seat="mySeat" action-state="actionState" my-cards="myCards" sitting-on-table="$root.sittingOnTable" notifications="notifications" turn-timer="turnTimer" seat-index="6"></seat>
+			<seat player="table.seats[getSeat(7)]" active-seat="table.activeSeat" dealer-seat="table.dealerSeat" seats-count="table.seatsCount" my-seat="mySeat" action-state="actionState" my-cards="myCards" sitting-on-table="$root.sittingOnTable" notifications="notifications" turn-timer="turnTimer" seat-index="7"></seat>
+			<seat player="table.seats[getSeat(8)]" active-seat="table.activeSeat" dealer-seat="table.dealerSeat" seats-count="table.seatsCount" my-seat="mySeat" action-state="actionState" my-cards="myCards" sitting-on-table="$root.sittingOnTable" notifications="notifications" turn-timer="turnTimer" seat-index="8"></seat>
+			<seat player="table.seats[getSeat(9)]" active-seat="table.activeSeat" dealer-seat="table.dealerSeat" seats-count="table.seatsCount" my-seat="mySeat" action-state="actionState" my-cards="myCards" sitting-on-table="$root.sittingOnTable" notifications="notifications" turn-timer="turnTimer" seat-index="9"></seat>
+		</div>
+		<div class="poker-header center">
+			<div style="float: left">
+				<a id="to-lobby" href="/" ng-show="!$root.sittingOnTable" ng-click="leaveRoom()"><img src="../images/back.png"> Return to Lobby</a>
+			</div>
+			<div style="position: absolute;right: 30px;top: 20px;z-index: 999;">
+				<div class="chat-cell">
+					<div id="chat" ng-controller="ChatController">
+						<div id="messages"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="table">
+			<div id="felt"></div>
+		</div>
+		<div class="row" style="height: 14.5%;">
+			<div class="cell">
+			</div>
+			<div class="double-cell" style="position: relative;">
+			</div>
+			<div class="cell">
+			</div>
+		</div>
+		<div class="row" style="height: 24.5%;">
+			<div class="cell">
+			</div>
+			<div class="double-cell">
+				<div id="pot-wrap">
+					<span id="pot" ng-show="table.pot[0].amount || table.pot.length > 1"><img src="/images/poker-chip.png" width="15px" style="margin-right:2px" />{{potText()}}</span>
+				</div>
+				<div id="waitingNotification" ng-show="!table.gameIsOn">
+					<div class="notificationHolder">Waiting for more players to sit in...</div>
+				</div>
+				<board cards="board"></board>
+			</div>
+			<div class="cell">
+			</div>
+		</div>
+		<div class="row">
+			<div class="cell">			
+			</div>
+			<div class="double-cell" style="position: relative;">
+			</div>
+			<div class="cell">
+				<span id="handName" ng-show="table.seats[mySeat].hasCards">{{handName}}</span>
+			</div>
+		</div>
+		<div class="row poker-controls">
+			<div class="cell center">
+				<div><button class="control-button" ng-click="sitIn()" ng-show="showSitInButton()">Sit In</button></div>
+				<div><button class="control-button" ng-click="leaveTable()" ng-show="showLeaveTableButton()">Leave Table</button></div>
+				<div ng-show="$root.sittingIn && table.gameIsOn">
+					<div style="text-align: left;display: inline-block;">
+						<label for="sitOutBigBlind" style="display: block;color: #b9b9b9;font-size:13px;">
+							<input type="checkbox" ng-model="sitOutBigBlindVal" ng-click="sitOutBigBlind()" id="sitOutBigBlind">
+							Sit out next big blind
+						</label>
+						<label for="sitOutHand" style="display: block;color: #b9b9b9;font-size:13px;">
+							<input type="checkbox" ng-model="sitOutNextHandVal" ng-click="sitOutNextHand()" id="sitOutHand">
+							Sit out next hand
+						</label>
+					</div>
+				</div>
+				<div style="position: relative;display: inline-block;">
+					<button class="control-button" style="height: 32px;" ng-show="$root.sittingOnTable !== null" ng-click="depositBox()"><img src="/images/deposit.png" style="width: 18px;vertical-align: top;margin-right: 6px;" /> Buy Chips</button>
+					<div class="deposit-box" ng-show="showDepositBox">
+						<div style="margin-bottom: 15px;"><img src="/images/deposit-black.png" style="width: 18px;vertical-align: top;margin-left: 10px;" /> Deposit</div>
+						<div style="font-size: 12px;">
+							<table class="table table-borderless">
+								<tr>
+									<td>Balance:</td>
+									<td>{{totalChips - $root.buyInAmount}}</td>
+								</tr>
+								<tr>
+									<td>Max Deposit:</td>
+									<td>{{getMaxDeposit()}}</td>
+								</tr>
+								<tr>
+									<td>Min Deposit:</td>
+									<td>{{getMinDeposit()}}</td>
+								</tr>
+							</table>
+						</div>
+						<div style="margin-top: 15px;">
+							<div style="color: #00c100;font-size: 12px;" ng-show="chipsDeposited != null">{{chipsDeposited}} chips deposited</div>
+							<div style="color: #000;font-size: 12px" ng-show="depositMessage">{{depositMessage}}</div>
+							<input type="text" id="desositAmountTxt" ng-model="depositAmount" placeholder="0000" />
+							<button class="buy-button" ng-click="depositChips()">Buy</button>
+						</div>
+						<div class="triangle-down"></div>
+					</div>
+				</div>
+			</div>
+			<div class="double-cell">
+				<table class="table table-borderless" style="height: 95%;">
+					<tr ng-show="$root.sittingIn && table.gameIsOn && table.seats[mySeat].inHand && table.activeSeat !== mySeat">
+						<td colspan="4">
+							<div class="prehandOptions">
+								<div style="color: #fff;margin-bottom: 5px;font-weight: bold;">Action next turn:</div>
+								<div class="option">
+									<label>
+										<input type="checkbox" ng-model="foldNextHand">
+										Fold
+									</label>
+								</div>
+								<div class="option" ng-show="showCheckNextHand()">
+									<label>
+										<input type="checkbox" ng-model="checkNextHand">
+										Check
+									</label>
+								</div>
+								<div class="option" ng-show="showCallNextHand()">
+									<label>
+										<input type="checkbox" ng-model="callNextHand">
+										Call {{callAmount()}}
+									</label>
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<button class="control-button" ng-click="fold()" ng-show="showFoldButton()"><img src="../images/fold.png">Fold</button>
+							<button class="control-button" ng-click="postBlind(false)" ng-show="actionState === 'postSmallBlind' || actionState === 'postBigBlind'">Sit Out</button>
+						</td>
+						<td>
+							<button class="control-button" ng-click="check()" ng-show="showCheckButton()"><img src="../images/check.png">Check</button>
+							<label class="container" ng-show="table.seats[mySeat].waitingToSitIn">Wait for Big Blind
+								<input type="radio" ng-click="updateSeatOption('waitForBigBlind')" id="waitForBigBlind">
+								<span class="checkmark"></span>
+							</label>
+						</td>
+						<td>
+							<button class="control-button" ng-click="call()" ng-show="showCallButton()"><img src="../images/check.png">Call {{callAmount()}}</button>
+						</td>
+						<td>
+							<button class="control-button" ng-click="postBlind(true)" ng-show="actionState === 'postSmallBlind'">Small Blind ({{table.smallBlind}})</button>
+							<button class="control-button" ng-click="postBlind(true)" ng-show="actionState === 'postBigBlind'">Big Blind ({{table.bigBlind}})</button>
+							<button class="control-button" ng-click="bet()" ng-show="showBetButton()"><img src="../images/bet.png">Bet {{betAmount}}</button>
+							<button class="control-button" ng-click="raise()" ng-show="showRaiseButton()"><img src="../images/bet.png">Raise to {{betAmount}}</button>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="4" style="text-align:center;">
+							<div ng-show="showBetRange()" ng-click="decreaseBet()" class="betAmountButton subtract">-</div>
+							<input type="range" ng-show="showBetRange()" min="{{minBetAmount()}}" max="{{maxBetAmount()}}" ng-model="betAmount" to-number>
+							<div ng-show="showBetRange()" ng-click="increaseBet()" class="betAmountButton">+</div>
+							<input type="text" id="bet-input" ng-show="showBetInput()" min="{{minBetAmount()}}" max="{{maxBetAmount()}}" ng-model="betAmount" value="{{betAmount}}">
+							<label class="container" ng-show="table.seats[mySeat].waitingToSitIn">Post {{table.bigBlind}} chips to join the next available hand
+								<input type="radio" ng-click="updateSeatOption('postBlinds')" id="postBlinds">
+								<span class="checkmark"></span>
+							</label>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="4" style="text-align: center;">
+							<button class="pot-option" ng-click="betAmount = (3*table.bigBlind)" ng-show="showBet3x()">X3</button>
+							<button class="pot-option" ng-click="betAmount = (5*table.bigBlind)" ng-show="showBet5x()">X5</button>
+							<button class="pot-option" ng-click="betHalfPot()" ng-show="showBetHalfPot()">1/2 Pot</button>
+							<button class="pot-option" ng-click="bet4thsPot()" ng-show="showBet4thsPot()">3/4 Pot</button>
+							<button class="pot-option" ng-click="betAmount = totalPot()" ng-show="showBetPot()">Pot</button>
+							<button class="pot-option" ng-click="betAmount = table.seats[mySeat].chipsInPlay + table.seats[mySeat].bet" ng-show="showBetRange()">All In</button>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="4" style="text-align:center;">
+							<span class="timeBank" ng-show="showTimebank()">Time Bank: {{timeBank}}</span>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="cell"></div>
+		</div>
+		<div id="audio">
+			<audio id="fold-sound" src="/audio/fold.wav" preload="auto">
+			<audio id="check-sound" src="/audio/check.wav" preload="auto">
+			<audio id="call-sound" src="/audio/call.wav" preload="auto">
+			<audio id="bet-sound" src="/audio/bet.wav" preload="auto">
+			<audio id="raise-sound" src="/audio/raise.wav" preload="auto">
+			<audio id="attention-sound" src="/audio/attention.wav" preload="auto">
+		</div>
+		<div id="temp-holder" style="display: none;"></div>
+	</div>
+</div>

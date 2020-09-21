@@ -1,0 +1,48 @@
+<div class="player-wrap" id="player-{{seatIndex}}" ng-show="showPlayer()">
+	<div class="dealer-button" id="dealer-wrap-{{seatIndex}}" ng-show="dealerSeat===player.seat && player.name">D</div>
+	<div class="player-cards" id="player-cards-{{player.seat}}" ng-show="player.hasCards" ng-class="{dealt: player.hasCards, folded: !player.inHand}">
+		<div class="card-container">
+			<div class="front">
+				<div class="card card-back" ng-show="seatOccupied(player.seat)"><div class="sr-only"></div></div>
+			</div>
+			<div class="back">
+				<div class="card" ng-show="seatOccupied(player.seat)" ng-class="getCardClass( player.seat, 0 )"><div class="sr-only">{{getCardDescription( player.seat, 0 )}}</div></div>
+			</div>
+		</div>
+		<div class="card-container">
+			<div class="front">
+				<div class="card card-back" ng-show="seatOccupied(player.seat)"><div class="sr-only"></div></div>
+			</div>
+			<div class="back">
+				<div class="card" ng-show="seatOccupied(player.seat)" ng-class="getCardClass( player.seat, 1 )"><div class="sr-only">{{getCardDescription( player.seat, 1 )}}</div></div>
+			</div>
+		</div>
+		
+	</div>
+	<div class="seat" ng-show="player != null" ng-class="{active: activeSeat===player.seat, folded: (!player.inHand && player.sittingIn) || !player.sittingIn}">
+		<div class="player-content" ng-show="player.name">
+			<div id="bets-{{seatIndex}}" class="bets">
+				<span ng-show="player.bet"><img src="/images/poker-chip.png" width="15px" style="margin-right:2px" />{{player.bet}}</span>
+				<span ng-show="player.winnings && actionState !== 'waiting'"><img src="/images/poker-chip.png" width="15px" style="margin-right:2px" />{{player.winnings}}</span>
+			</div>
+			<div ng-show="!notifications[player.seat].message">
+				<span>{{player.name}}</span>
+				<span>{{player.chipsInPlay}}</span>
+				<!-- <span ng-show="!player.sittingIn">Sitting Out</span> -->
+			</div>
+			<div ng-show="notifications[player.seat].message">
+				<span class="notification">{{notifications[player.seat].message}}</span>
+			</div>
+		</div>
+		<div style='width:100%;height:100%;position: relative;'>
+			<div class="player-timer" ng-show="player.name && activeSeat === player.seat && turnTimer !== null">
+				<span class="timer-text" id="timer-text-{{player.seat}}"></span>
+				<div class="main-timer-holder">
+					<div class="timer-holder" id="player-timer-{{player.seat}}">
+						<div class="filler"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
