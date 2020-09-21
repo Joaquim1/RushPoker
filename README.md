@@ -3,7 +3,7 @@ Rush Poker
 
 Originally forked from [here](https://github.com/geobalas/Poker)
 
-FOR EDUCATION PURPOSES ONLY
+**FOR EDUCATION PURPOSES ONLY**
 
 A poker application running on node.js with socket.io, using angularJS on the front-end for data binding and MongoDB as the database.
 
